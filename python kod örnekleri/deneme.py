@@ -110,14 +110,15 @@ class Window(QMainWindow):
 
     def create_linechart(self):
 
-        series = QLineSeries(self)
+        series = QLineSeries(name="sicaklik") # veriler çizilmek için fonksiyon adresi aktarılır
+        series.setPointsVisible(True)
         SicaklikDataClass.getRawData(series)
 
-
         self.chart.addSeries(series)
         self.chart.createDefaultAxes()
         self.chart.setAnimationOptions(QChart.SeriesAnimations)
-        self.chart.setTitle("Line Chart Example")
+        self.chart.setTitle("Temperature Humidity") #"Line Chart Example"
+
 
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(Qt.AlignBottom)
@@ -127,15 +128,14 @@ class Window(QMainWindow):
 
         self.setCentralWidget(chartview)
 
-        series = QLineSeries(self)
+        series = QLineSeries(name="Nem") # veriler çizilmek için fonksiyon adresi aktarılır
+        series.setPointsVisible(True)
         NemDataClass.getRawData(series)
 
-
         self.chart.addSeries(series)
         self.chart.createDefaultAxes()
         self.chart.setAnimationOptions(QChart.SeriesAnimations)
-        self.chart.setTitle("Line Chart Example")
-
+    
         self.chart.legend().setVisible(True)
         self.chart.legend().setAlignment(Qt.AlignBottom)
 
@@ -143,6 +143,8 @@ class Window(QMainWindow):
         chartview.setRenderHint(QPainter.Antialiasing)
 
         self.setCentralWidget(chartview)
+
+        
 
 
 
@@ -150,9 +152,11 @@ class Window(QMainWindow):
     def Timer1(self):
         self.chart.removeAllSeries() # seriler üst üste karışmaması için eskiler kaldırılır
         t.clear()    # önceki veriler silinir
+        t2.clear()    # önceki veriler silinir
         feild_1,feild_2=read_data_thingspeak()  # thinkspeakten 20 adet veri alınır
         SicaklikDataClass.setRawData(feild_1)
-        series = QLineSeries(self) # veriler çizilmek için fonksiyon adresi aktarılır
+        series = QLineSeries(name="sicaklik") # veriler çizilmek için fonksiyon adresi aktarılır
+        series.setPointsVisible(True)
         SicaklikDataClass.getRawData(series) #veriler kullanılmak üzere işlenir 
         self.chart.addSeries(series)  #işlenen veriler chart verisine input olarak alınır 
         self.chart.createDefaultAxes()
@@ -164,7 +168,8 @@ class Window(QMainWindow):
         self.setCentralWidget(chartview)
 
         NemDataClass.setRawData(feild_2)
-        series = QLineSeries(self) # veriler çizilmek için fonksiyon adresi aktarılır
+        series = QLineSeries(name="Nem") # veriler çizilmek için fonksiyon adresi aktarılır
+        series.setPointsVisible(True)
         NemDataClass.getRawData(series) #veriler kullanılmak üzere işlenir 
         self.chart.addSeries(series)  #işlenen veriler chart verisine input olarak alınır 
         self.chart.createDefaultAxes()
