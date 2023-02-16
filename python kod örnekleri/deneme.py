@@ -16,8 +16,8 @@ import json
 
 # Define a function that will post on server every 15 Seconds
 
-t=[]
-t2=[]
+t=[]  # thingspeakten gelen veriler kullanmaya hazır şekilde  bu dizide tutulur
+t2=[] # thingspeakten gelen veriler kullanmaya hazır şekilde  bu dizide tutulur
 
 
 class SicaklikData():
