@@ -92,7 +92,7 @@ def thread_islem(kuyruk1,kuyruk2):
      
 def main():
     global kuyruk1,kuyruk2
-    th0 = threading.Thread(target=thread_islem,args = (kuyruk1,kuyruk2)) #Yani özetle main thread sonlandığında daemon thread çalışıyor olsa bile sonlandırılır.
+    th0 = threading.Thread(target=thread_islem,args = (kuyruk1,kuyruk2),daemon=True) #Yani özetle main thread sonlandığında daemon thread çalışıyor olsa bile sonlandırılır.
     th0.start()
     while True:
         while not kuyruk1.empty():
