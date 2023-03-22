@@ -307,7 +307,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 for eleman,i in zip(list,range(len(list))): # eleman ve indeks döndürür
                     if eleman==True:
                        list[i]=False
-            break          #list tüm elemanları False çekilir
+                break          #list tüm elemanları False çekilir
         
  
     def show_popup(self):
