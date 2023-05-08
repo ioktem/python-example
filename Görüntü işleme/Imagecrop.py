@@ -2,9 +2,16 @@ import cv2
 #import cv2 numpy as np
 
 image=cv2.imread('C:\\Users\\i.oktem\\Desktop\\New folder (3)\\0.png')    #kırpmakistediğim görüntünün bilgisayarımda ki konumunu belirtiyorum
+h, w, _ = image.shape
+print('width: ', w)
+print('height:', h)
+
+#https://note.nkmk.me/en/python-opencv-pillow-image-size/
+print('width: ', image.shape[1])
+print('height:', image.shape[0])
+
+
 image= cv2.resize(image, (1280,720), interpolation = cv2.INTER_AREA) #irfan yüksek kaliteli frame video modu için dönüştürüldü    
-#ConvertToQtFormat = QImage(DisplayedRGBFrame.data, window_size[0],window_size[1], QImage_Format)
-#Pic = ConvertToQtFormat.scaled(self.myparent.cameraframewidth, self.myparent.cameraframeheight) 
 
 height, width = image.shape[:2]
 
@@ -16,12 +23,16 @@ end_row, end_col=int(height * .75), int(width * .75)
 cropped=image[160:560, 0:840 ]  # dikey(0 sol üstten başlar) , yatay (0 sol üstten başlar)
 
 cv2.imshow("Original Image", image)     #açılan pencerede ilk orjinal görüntümüz açılır
-cv2.imshow("Cropped Image", cropped)   #çarpıya tıkladığımız da ise kırpılmış görüntü ile karşılaşırız
+cv2.waitKey(0) #açılan pencereyi kapattığımızda ise kırpılmış görüntü ile karşılaşırız
 
-cv2.waitKey(0)
+# Filename
+filename = 'savedImage.jpg'
+  
+# Using cv2.imwrite() method
+# Saving the image
+cv2.imwrite(filename, cropped)  # kesilen fotograf masaüstğne kaydedildi.
 
-cv2.imshow("Cropped Image", cropped)   #çarpıya tıkladığımız da ise kırpılmış görüntü ile karşılaşırız
-
+cv2.imshow("Cropped Image", cropped)   
 cv2.waitKey(0)
 
 cv2.destroyAllWindows()
